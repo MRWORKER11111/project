@@ -8,11 +8,15 @@ import 'package:project/presentation/widgets/appbar_widget.dart';
 class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({super.key});
 
+  final List imageList = [
+    "https://images.app.goo.gl/iJgk726HPBA89mTf6",
+    "https://images.app.goo.gl/3kRNRNUQvH8PvXYt8",
+    "https://images.app.goo.gl/zcYRCXQmVL1usLbu6",
+  ];
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    const String url1 = "https://images.app.goo.gl/3kRNRNUQvH8PvXYt8";
-    const String url2 = "https://images.app.goo.gl/zcYRCXQmVL1usLbu6";
 
     return Scaffold(
       appBar: const PreferredSize(
@@ -50,18 +54,7 @@ class ScreenDownloads extends StatelessWidget {
                 CircleAvatar(
                   radius: size.width * 0.37,
                 ),
-                Transform.rotate(
-                  angle: 38 * pi / 180,
-                  child: Container(
-                    width: size.width * 0.4,
-                    height: size.width * 0.58,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          image: NetworkImage(url1), fit: BoxFit.fill),
-                    ),
-                  ),
-                )
+                const Downloadswidget(imageList: [0], anglegot: 28 * pi / 180)
               ],
             ),
           ),
@@ -90,6 +83,37 @@ class ScreenDownloads extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class Downloadswidget extends StatelessWidget {
+  const Downloadswidget({
+    super.key,
+    required this.imageList,
+    required this.anglegot,
+  });
+
+  final List imageList;
+  final double anglegot;
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Transform.rotate(
+      angle: anglegot,
+      child: Container(
+        width: size.width * 0.4,
+        height: size.width * 0.58,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: NetworkImage(
+              imageList[0],
+            ),
+          ),
+        ),
       ),
     );
   }
