@@ -8,14 +8,12 @@ import 'package:project/presentation/widgets/appbar_widget.dart';
 class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({super.key});
 
-  final List imagesList = [
-    "https://images.app.goo.gl/3kRNRNUQvH8PvXYt8",
-    "https://images.app.goo.gl/zcYRCXQmVL1usLbu6"
-  ];
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    const String url1 = "https://images.app.goo.gl/3kRNRNUQvH8PvXYt8";
+    const String url2 = "https://images.app.goo.gl/zcYRCXQmVL1usLbu6";
+
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50),
@@ -60,10 +58,7 @@ class ScreenDownloads extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        image: NetworkImage(
-                          imagesList[0],
-                        ),
-                      ),
+                          image: NetworkImage(url1), fit: BoxFit.fill),
                     ),
                   ),
                 )
