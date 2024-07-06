@@ -11,7 +11,7 @@ class MainCard extends StatelessWidget {
       ),
       child: Container(
         width: 120,
-        height: 160,
+        height: 180,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
           image: DecorationImage(
