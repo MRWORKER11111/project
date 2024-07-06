@@ -29,7 +29,7 @@ class SearchResultWidget extends StatelessWidget {
             childAspectRatio: 1.2 / 1.5,
             children: List.generate(
               20,
-              (index) => MainCard(),
+              (index) => MainCard1(),
             ),
           ),
         ),
@@ -38,8 +38,8 @@ class SearchResultWidget extends StatelessWidget {
   }
 }
 
-class MainCard extends StatelessWidget {
-  const MainCard({super.key});
+class MainCard1 extends StatelessWidget {
+  const MainCard1({super.key});
 
   @override
   Widget build(BuildContext context) {

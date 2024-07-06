@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:project/presentation/search/widgets/search_result.dart';
+import 'package:project/core/constants.dart';
+import 'package:project/presentation/widgets/main_card.dart';
 import 'package:project/presentation/widgets/main_title.dart';
 
 class MainTitleCard extends StatelessWidget {
+  final String title;
   const MainTitleCard({
     super.key,
+    required this.title,
   });
 
   @override
@@ -13,21 +16,25 @@ class MainTitleCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 6),
+          padding: const EdgeInsets.only(left: 1),
           child: MainTitle(
-            title: "Released in the past year",
+            title: title,
           ),
         ),
+        SizedBox(
+          height: 3,
+        ),
         LimitedBox(
-          maxHeight: 160,
+          maxHeight: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
               10,
-              (index) => MainCard(),
+              (index) => const MainCard(),
             ),
           ),
-        )
+        ),
+        kheight1,
       ],
     );
   }
