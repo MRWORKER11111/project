@@ -28,15 +28,15 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  bordered_text: ^2.0.0
-  cupertino_icons: ^1.0.6
+  bordered_text: 
+  cupertino_icons: 
   flutter:
     sdk: flutter
   google_fonts: null
-  video_player: ^2.9.1
+  video_player:
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_lints: 
   flutter_test:
     sdk: flutter
 

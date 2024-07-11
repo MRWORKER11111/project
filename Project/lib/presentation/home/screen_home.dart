@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/core/colors/colors.dart';
+import 'package:project/presentation/home/custombuttonwidget.dart';
 import 'package:project/presentation/home/number_card.dart';
 import 'package:project/presentation/widgets/main_title.dart';
 import 'package:project/presentation/widgets/main_title_card.dart';
@@ -34,29 +35,16 @@ class Screenhome extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextButton.icon(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                          kwhitecolor,
-                        ),
-                        shape: WidgetStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.play_arrow,
-                        color: Colors.black,
-                      ),
-                      label: Text(
-                        'Play',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15),
-                      ),
+                    CustomButtonWidget(
+                      icon: Icons.add,
+                      iconcolor: kwhitecolor,
+                      iconlabel: "My List",
+                    ),
+                    playButton(),
+                    CustomButtonWidget(
+                      icon: Icons.info_outline,
+                      iconcolor: kbuttoncolorwhite,
+                      iconlabel: "Info",
                     )
                   ],
                 ),
@@ -77,6 +65,39 @@ class Screenhome extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class playButton extends StatelessWidget {
+  const playButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: () {},
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all<Color>(
+          kwhitecolor,
+        ),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
+      ),
+      icon: Icon(
+        Icons.play_arrow,
+        color: Colors.black,
+        size: 30,
+      ),
+      label: Text(
+        'Play',
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
       ),
     );
   }

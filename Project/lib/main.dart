@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
-        fontFamily: GoogleFonts.montserrat().fontFamily,
-        scaffoldBackgroundColor: backgroundColor,
-        textTheme: const TextTheme(
-          bodySmall: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white),
-          bodyLarge: TextStyle(color: Colors.white),
-        ),
-        primaryColor: Colors.black,
-      ),
+          fontFamily: GoogleFonts.montserrat().fontFamily,
+          scaffoldBackgroundColor: backgroundColor,
+          textTheme: const TextTheme(
+            bodySmall: TextStyle(color: Colors.white),
+            bodyMedium: TextStyle(color: Colors.white),
+            bodyLarge: TextStyle(color: Colors.white),
+          ),
+          primaryColor: Colors.white,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)),
       home: ScreenMainPage(),
     );
   }
