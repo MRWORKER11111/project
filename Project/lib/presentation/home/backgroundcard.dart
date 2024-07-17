@@ -14,7 +14,7 @@ class Backgroundcard extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: 450,
+          height: 500,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             image: DecorationImage(
@@ -23,31 +23,34 @@ class Backgroundcard extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CustomButtonWidget(
-                  icon: Icons.add,
-                  iconcolor: kwhitecolor,
-                  iconlabel: "My List",
-                ),
-                playButton(),
-                CustomButtonWidget(
-                  icon: Icons.info_outline,
-                  iconcolor: kbuttoncolorwhite,
-                  iconlabel: "Info",
-                )
-              ],
-            ),
-          ),
-        ),
       ],
+    );
+  }
+}
+
+class backgroundcardicons extends StatelessWidget {
+  const backgroundcardicons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CustomButtonWidget(
+            icon: Icons.add,
+            iconcolor: kwhitecolor,
+            iconlabel: "My List",
+          ),
+          playButton(),
+          CustomButtonWidget(
+            icon: Icons.info_outline,
+            iconcolor: kbuttoncolorwhite,
+            iconlabel: "Info",
+          )
+        ],
+      ),
     );
   }
 }

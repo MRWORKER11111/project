@@ -6,7 +6,7 @@ import 'package:project/presentation/home/number_card.dart';
 import 'package:project/presentation/widgets/main_title.dart';
 import 'package:project/presentation/widgets/main_title_card.dart';
 
-ValueNotifier<bool> scrollnotifier = ValueNotifier(false);
+ValueNotifier<bool> scrollnotifier = ValueNotifier(true);
 
 class Screenhome extends StatelessWidget {
   const Screenhome({super.key});
@@ -24,6 +24,7 @@ class Screenhome extends StatelessWidget {
             child: NotificationListener<UserScrollNotification>(
               onNotification: (notification) {
                 final ScrollDirection direction = notification.direction;
+
                 if (direction == ScrollDirection.reverse) {
                   scrollnotifier.value = false;
                 } else if (ScrollDirection == ScrollDirection.forward) {
@@ -36,6 +37,7 @@ class Screenhome extends StatelessWidget {
                   ListView(
                     children: [
                       Backgroundcard(),
+                      backgroundcardicons(),
                       MainTitleCard(
                         title: "Released in The Past Year",
                       ),
@@ -56,16 +58,20 @@ class Screenhome extends StatelessWidget {
                       ? AnimatedContainer(
                           duration: Duration(milliseconds: 1000),
                           width: double.infinity,
-                          height: 80,
+                          height: 90,
                           color: Colors.black.withOpacity(0.3),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Row(
                                 children: [
-                                  Image.network(
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWI7clES9W75CGV-Bcxj248JnTz50rmHZS0Q&s",
-                                    width: 60,
-                                    height: 60,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Image.network(
+                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWI7clES9W75CGV-Bcxj248JnTz50rmHZS0Q&s",
+                                      width: 45,
+                                      height: 45,
+                                    ),
                                   ),
                                   Spacer(),
                                   Icon(
