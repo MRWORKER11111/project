@@ -12,3 +12,6 @@ const kheight1 = SizedBox(
 const kheight20 = SizedBox(
   height: 20,
 );
+
+TextStyle khometitletextstyle =
+    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project/core/colors/colors.dart';
-import 'package:project/presentation/home/custombuttonwidget.dart';
+import 'package:flutter/rendering.dart';
+import 'package:project/core/constants.dart';
+import 'package:project/presentation/home/backgroundcard.dart';
 import 'package:project/presentation/home/number_card.dart';
 import 'package:project/presentation/widgets/main_title.dart';
 import 'package:project/presentation/widgets/main_title_card.dart';
+
+ValueNotifier<bool> scrollnotifier = ValueNotifier(false);
 
 class Screenhome extends StatelessWidget {
   const Screenhome({super.key});
@@ -13,91 +16,98 @@ class Screenhome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 2.0, top: 10),
-        child: ListView(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 450,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(
-                  image: NetworkImage(mainImage),
-                  fit: BoxFit.cover,
-                ),
+      body: ValueListenableBuilder(
+        valueListenable: scrollnotifier,
+        builder: (BuildContext context, index, _) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: NotificationListener<UserScrollNotification>(
+              onNotification: (notification) {
+                final ScrollDirection direction = notification.direction;
+                if (direction == ScrollDirection.reverse) {
+                  scrollnotifier.value = false;
+                } else if (ScrollDirection == ScrollDirection.forward) {
+                  scrollnotifier.value = true;
+                }
+                return true;
+              },
+              child: Stack(
+                children: [
+                  ListView(
+                    children: [
+                      Backgroundcard(),
+                      MainTitleCard(
+                        title: "Released in The Past Year",
+                      ),
+                      MainTitleCard(
+                        title: "Trending Now",
+                      ),
+                      special_title_card(),
+                      MainTitleCard(
+                        title: "Title 3",
+                      ),
+                      MainTitleCard(
+                        title: "The Best",
+                      ),
+                      kheight
+                    ],
+                  ),
+                  scrollnotifier.value == true
+                      ? AnimatedContainer(
+                          duration: Duration(milliseconds: 1000),
+                          width: double.infinity,
+                          height: 80,
+                          color: Colors.black.withOpacity(0.3),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Image.network(
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWI7clES9W75CGV-Bcxj248JnTz50rmHZS0Q&s",
+                                    width: 60,
+                                    height: 60,
+                                  ),
+                                  Spacer(),
+                                  Icon(
+                                    Icons.cast,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                  widhth,
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    color: Colors.blue,
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    "TV Shows",
+                                    style: khometitletextstyle,
+                                  ),
+                                  Text(
+                                    "Photos",
+                                    style: khometitletextstyle,
+                                  ),
+                                  Text(
+                                    "Categories",
+                                    style: khometitletextstyle,
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      : kheight
+                ],
               ),
             ),
-            Align(
-              child: Container(
-                width: double.infinity,
-                height: 75,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CustomButtonWidget(
-                      icon: Icons.add,
-                      iconcolor: kwhitecolor,
-                      iconlabel: "My List",
-                    ),
-                    playButton(),
-                    CustomButtonWidget(
-                      icon: Icons.info_outline,
-                      iconcolor: kbuttoncolorwhite,
-                      iconlabel: "Info",
-                    )
-                  ],
-                ),
-              ),
-            ),
-            MainTitleCard(
-              title: "Released in The Past Year",
-            ),
-            MainTitleCard(
-              title: "Trending Now",
-            ),
-            special_title_card(),
-            MainTitleCard(
-              title: "Title 3",
-            ),
-            MainTitleCard(
-              title: "The Best",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class playButton extends StatelessWidget {
-  const playButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: () {},
-      style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(
-          kwhitecolor,
-        ),
-        shape: WidgetStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3),
-          ),
-        ),
-      ),
-      icon: Icon(
-        Icons.play_arrow,
-        color: Colors.black,
-        size: 30,
-      ),
-      label: Text(
-        'Play',
-        style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+          );
+        },
       ),
     );
   }
