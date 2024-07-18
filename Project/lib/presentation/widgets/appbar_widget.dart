@@ -14,9 +14,7 @@ class Appbarwidget extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         const Spacer(),
         const Icon(

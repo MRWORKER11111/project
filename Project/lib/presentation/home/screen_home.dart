@@ -68,9 +68,10 @@ class Screenhome extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Image.network(
-                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWI7clES9W75CGV-Bcxj248JnTz50rmHZS0Q&s",
-                                      width: 45,
-                                      height: 45,
+                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrXZhVRcwZ8Z6nK6uQxBoSFmlsrH_nBhI-Bg&s",
+                                      width: 40,
+                                      height: 40,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   Spacer(),
