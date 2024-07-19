@@ -23,7 +23,12 @@ class MyApp extends StatelessWidget {
                   .fontFamily,
           scaffoldBackgroundColor: backgroundColor,
           primaryColor: Colors.white,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+          textTheme: TextTheme(
+              displayMedium: TextStyle(color: Colors.white),
+              labelMedium: TextStyle(color: Colors.white),
+              headlineMedium: TextStyle(color: Colors.white),
+              bodyMedium: TextStyle(color: Colors.white))),
       home: ScreenMainPage(),
     );
   }

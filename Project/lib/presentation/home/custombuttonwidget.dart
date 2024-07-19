@@ -25,7 +25,7 @@ class CustomButtonWidget extends StatelessWidget {
           iconlabel,
           style: TextStyle(
             color: kwhitecolor,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ),
         )
       ],
