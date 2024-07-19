@@ -10,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,9 +18,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           appBarTheme: AppBarTheme(backgroundColor: Colors.transparent),
           primarySwatch: Colors.blue,
-          fontFamily: GoogleFonts.montserrat().fontFamily,
+          fontFamily:
+              GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.white))
+                  .fontFamily,
           scaffoldBackgroundColor: backgroundColor,
-          textTheme: TextTheme(),
           primaryColor: Colors.white,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)),
       home: ScreenMainPage(),
