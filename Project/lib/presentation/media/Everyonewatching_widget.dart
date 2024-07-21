@@ -28,12 +28,12 @@ class EveryonesWatchingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "LOREM  IPSUM",
+              "LOREM  IPSUM  2",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -84,7 +84,6 @@ class EveryonesWatchingWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: screenSize.width * .45,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -120,7 +119,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
               ),
             ),
             Container(
-              width: screenSize.width * .42,
+              width: screenSize.width * .3,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
