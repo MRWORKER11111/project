@@ -13,6 +13,7 @@ class Appbarwidget extends StatelessWidget {
         Row(
           children: [
             widhth,
+            widhth,
             Text(
               title,
               style: const TextStyle(

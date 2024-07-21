@@ -108,6 +108,7 @@ class CommingSoonWidget extends StatelessWidget {
                         mediabuttons(
                           icon1: Icons.notifications_none_outlined,
                           iconlabel: "Remind Me",
+                          angle: 0,
                         ),
                         SizedBox(
                           width: 15,
@@ -115,7 +116,8 @@ class CommingSoonWidget extends StatelessWidget {
                         mediabuttons(
                           icon1: Icons.info_outlined,
                           iconlabel: "info",
-                        )
+                          angle: 0,
+                        ),
                       ],
                     ),
                   )
@@ -173,11 +175,13 @@ class CommingSoonWidget extends StatelessWidget {
 class mediabuttons extends StatelessWidget {
   final IconData icon1;
   final iconlabel;
+  final double angle;
 
   mediabuttons({
     super.key,
     required this.icon1,
     required this.iconlabel,
+    required this.angle,
   });
 
   @override
@@ -185,11 +189,14 @@ class mediabuttons extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          icon1,
-          color: const Color.fromARGB(255, 216, 216, 216),
-          weight: 1,
-          size: 20,
+        Transform.rotate(
+          angle: angle,
+          child: Icon(
+            icon1,
+            color: const Color.fromARGB(255, 216, 216, 216),
+            weight: 1,
+            size: 20,
+          ),
         ),
         Text(
           iconlabel,
