@@ -18,9 +18,11 @@ class ScreenMedia extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(90),
             child: AppBar(
+              
               elevation: 0,
               title: Appbarwidget(title: "Media"),
               bottom: TabBar(
+                
                   dividerHeight: 0,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.white,
