@@ -108,6 +108,8 @@ class CommingSoonWidget extends StatelessWidget {
                         mediabuttons(
                           icon1: Icons.notifications_none_outlined,
                           iconlabel: "Remind Me",
+                          iconSize: 20,
+                          heightbetween: 0,
                         ),
                         SizedBox(
                           width: 15,
@@ -115,7 +117,9 @@ class CommingSoonWidget extends StatelessWidget {
                         mediabuttons(
                           icon1: Icons.info_outlined,
                           iconlabel: "info",
-                        )
+                          iconSize: 20,
+                          heightbetween: 0,
+                        ),
                       ],
                     ),
                   )
@@ -173,11 +177,15 @@ class CommingSoonWidget extends StatelessWidget {
 class mediabuttons extends StatelessWidget {
   final IconData icon1;
   final iconlabel;
+  final double iconSize;
+  final double heightbetween;
 
   mediabuttons({
     super.key,
     required this.icon1,
     required this.iconlabel,
+    required this.iconSize,
+    required this.heightbetween,
   });
 
   @override
@@ -185,11 +193,17 @@ class mediabuttons extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        SizedBox(
+          height: heightbetween * .8,
+        ),
         Icon(
           icon1,
           color: const Color.fromARGB(255, 216, 216, 216),
           weight: 1,
-          size: 20,
+          size: iconSize,
+        ),
+        SizedBox(
+          height: heightbetween,
         ),
         Text(
           iconlabel,
