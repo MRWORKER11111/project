@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/application/downloads/downloads_bloc.dart';
 
 import 'package:project/core/colors/colors.dart';
 import 'package:project/core/constants.dart';
@@ -49,7 +51,14 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        BlocProvider.of<DownloadsBloc>(context)
+            .add(DownloadsEvent.getdownloadsImage());
+      },
+    );
     final Size size = MediaQuery.sizeOf(context) * .6;
+
     return Column(
       children: [
         const Text(
@@ -71,39 +80,43 @@ class Section2 extends StatelessWidget {
           ),
         ),
         kheight,
-        SizedBox(
-          width: size.width,
-          height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: size.width * 0.418,
-                backgroundColor: Colors.grey.withOpacity(.5),
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              height: size.width,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: size.width * 0.418,
+                    backgroundColor: Colors.grey.withOpacity(.5),
+                  ),
+                  Downloadswidget(
+                    margingot: EdgeInsets.only(left: 180, top: 54),
+                    imagegotlist: imageList[2],
+                    anglegot: 10,
+                    sizegot: Size(size.width * 0.39, size.height * 0.45),
+                    radiusgot: 5,
+                  ),
+                  Downloadswidget(
+                    margingot: EdgeInsets.only(right: 180, top: 54),
+                    imagegotlist: imageList[1],
+                    anglegot: -10,
+                    sizegot: Size(size.width * 0.39, size.height * 0.45),
+                    radiusgot: 5,
+                  ),
+                  Downloadswidget(
+                    anglegot: 0,
+                    margingot: EdgeInsets.only(top: 20),
+                    imagegotlist: imageList[0],
+                    sizegot: Size(size.width * 0.44, size.height * 0.53),
+                    radiusgot: 7,
+                  ),
+                ],
               ),
-              Downloadswidget(
-                margingot: EdgeInsets.only(left: 180, top: 54),
-                imagegotlist: imageList[2],
-                anglegot: 10,
-                sizegot: Size(size.width * 0.39, size.height * 0.45),
-                radiusgot: 5,
-              ),
-              Downloadswidget(
-                margingot: EdgeInsets.only(right: 180, top: 54),
-                imagegotlist: imageList[1],
-                anglegot: -10,
-                sizegot: Size(size.width * 0.39, size.height * 0.45),
-                radiusgot: 5,
-              ),
-              Downloadswidget(
-                anglegot: 0,
-                margingot: EdgeInsets.only(top: 20),
-                imagegotlist: imageList[0],
-                sizegot: Size(size.width * 0.44, size.height * 0.53),
-                radiusgot: 7,
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ],
     );

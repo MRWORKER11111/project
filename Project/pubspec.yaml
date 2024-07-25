@@ -35,9 +35,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
-  get_it: ^7.7.0
+  get_it: ^7.2.0
   google_fonts: null
-  injectable: ^2.4.4
+  injectable: ^1.5.3
   json_serializable: ^6.8.0
   video_player: null
 
@@ -47,7 +47,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: null
-  injectable_generator: ^2.6.2
+  injectable_generator: ^1.5.3
   json_annotation: ^4.9.0
 
 # For information on the generic Dart part of this file, see the
