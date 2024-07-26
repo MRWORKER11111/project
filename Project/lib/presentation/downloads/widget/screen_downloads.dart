@@ -85,36 +85,40 @@ class Section2 extends StatelessWidget {
             return SizedBox(
               width: size.width,
               height: size.width,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: size.width * 0.418,
-                    backgroundColor: Colors.grey.withOpacity(.5),
-                  ),
-                  Downloadswidget(
-                    margingot: EdgeInsets.only(left: 180, top: 54),
-                    imagegotlist: imageList[2],
-                    anglegot: 10,
-                    sizegot: Size(size.width * 0.39, size.height * 0.45),
-                    radiusgot: 5,
-                  ),
-                  Downloadswidget(
-                    margingot: EdgeInsets.only(right: 180, top: 54),
-                    imagegotlist: imageList[1],
-                    anglegot: -10,
-                    sizegot: Size(size.width * 0.39, size.height * 0.45),
-                    radiusgot: 5,
-                  ),
-                  Downloadswidget(
-                    anglegot: 0,
-                    margingot: EdgeInsets.only(top: 20),
-                    imagegotlist: imageList[0],
-                    sizegot: Size(size.width * 0.44, size.height * 0.53),
-                    radiusgot: 7,
-                  ),
-                ],
-              ),
+              child: state.isloading
+                  ? const Center(child: CircularProgressIndicator())
+                  : Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Text("${state.downloads![0]}"),
+                        CircleAvatar(
+                          radius: size.width * 0.418,
+                          backgroundColor: Colors.grey.withOpacity(.5),
+                        ),
+                        Downloadswidget(
+                          margingot: EdgeInsets.only(left: 180, top: 54),
+                          imagegotlist:
+                              "$imageappendurl${state.downloads?[2].posterpath}",
+                          anglegot: 10,
+                          sizegot: Size(size.width * 0.39, size.height * 0.45),
+                          radiusgot: 5,
+                        ),
+                        Downloadswidget(
+                          margingot: EdgeInsets.only(right: 180, top: 54),
+                          imagegotlist: imageList[1],
+                          anglegot: -10,
+                          sizegot: Size(size.width * 0.39, size.height * 0.45),
+                          radiusgot: 5,
+                        ),
+                        Downloadswidget(
+                          anglegot: 0,
+                          margingot: EdgeInsets.only(top: 20),
+                          imagegotlist: imageList[0],
+                          sizegot: Size(size.width * 0.44, size.height * 0.53),
+                          radiusgot: 7,
+                        ),
+                      ],
+                    ),
             );
           },
         ),

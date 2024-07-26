@@ -17,3 +17,5 @@ TextStyle khometitletextstyle =
     const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
 
 TextStyle textStyle1 = const TextStyle(color: Colors.white);
+
+const imageappendurl = 'https://image.tmdb.org/t/p/w500/';

@@ -13,13 +13,13 @@ class DownloadsRepository implements IDownloadsRepo {
   @override
   Future<Either<MainFailure, List<Downloads>>> getdownloadsImage() async {
     try {
-      final Response = await Dio(BaseOptions()).get(ApiEndPoints.downloads);
-      if (Response.statusCode == 200 || Response.statusCode == 201) {
-        final downloadsList = (Response.data['result'] as List).map((e) {
+      final Response response =
+          await Dio(BaseOptions()).get(ApiEndPoints.downloads);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final downloadsList = (response.data['results'] as List).map((e) {
           return Downloads.fromJson(e);
         }).toList();
 
-        print(downloadsList);
         return Right(downloadsList);
       } else {
         return const Left(MainFailure.serverFailure());

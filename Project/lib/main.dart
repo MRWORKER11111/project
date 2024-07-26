@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => getIt<DownloadsBloc>()),
+        BlocProvider(create: (ctx) => getIt<DownloadsBloc>()),
       ],
       child: MaterialApp(
         title: 'PROJECT',
