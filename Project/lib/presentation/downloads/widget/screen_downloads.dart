@@ -40,7 +40,6 @@ class ScreenDownloads extends StatelessWidget {
 
 class Section2 extends StatelessWidget {
   Section2({super.key});
-
   final List<String> imageList = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8txrGEytl7a4iztKJbzeERdUmUcJl61CneQ&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY9ySzivdh9z9BRbQ0PGDiYbvkVFRkrSirvQ&s",
@@ -48,6 +47,7 @@ class Section2 extends StatelessWidget {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUWTxRA7IAIDPkiTYsZcftPYHWI2RvRflZqw&s",
     "https://media.geeksforgeeks.org/wp-content/uploads/20230406152358/CN-(1).jpg"
   ];
+  final List2 = DownloadsEvent.getdownloadsImage();
 
   @override
   Widget build(BuildContext context) {
@@ -90,15 +90,14 @@ class Section2 extends StatelessWidget {
                   : Stack(
                       alignment: Alignment.center,
                       children: [
-                        Text("${state.downloads![0]}"),
                         CircleAvatar(
                           radius: size.width * 0.418,
                           backgroundColor: Colors.grey.withOpacity(.5),
                         ),
                         Downloadswidget(
                           margingot: EdgeInsets.only(left: 180, top: 54),
-                          imagegotlist:
-                              "$imageappendurl${state.downloads?[2].posterpath}",
+                          imagegotlist: imageappendurl +
+                              "${state.downloads?[0].posterpath}",
                           anglegot: 10,
                           sizegot: Size(size.width * 0.39, size.height * 0.45),
                           radiusgot: 5,
