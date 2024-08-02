@@ -35,6 +35,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+<<<<<<< HEAD
+=======
+  freezed_annotation: ^2.4.4
+>>>>>>> b69e5dbeedc2e88d6e2362cf870ba3553d0b67f7
   get_it: ^7.2.0
   google_fonts: null
   injectable: ^1.5.3
