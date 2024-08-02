@@ -42,6 +42,7 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadsState> {
             ),
           ),
         );
+        log(_downloadsRepo.getdownloadsImage().toString());
       },
     );
   }

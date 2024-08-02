@@ -18,4 +18,4 @@ TextStyle khometitletextstyle =
 
 TextStyle textStyle1 = const TextStyle(color: Colors.white);
 
-const imageappendurl = 'https://image.tmdb.org/t/p/w500/';
+const imageappendurl = 'https://image.tmdb.org/t/p/w500';
