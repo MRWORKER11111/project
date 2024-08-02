@@ -97,7 +97,7 @@ class Section2 extends StatelessWidget {
                         Downloadswidget(
                           margingot: EdgeInsets.only(left: 180, top: 54),
                           imagegotlist: imageappendurl +
-                              "${state.downloads?[0].posterpath}",
+                              "${state.downloads?[1].posterpath}",
                           anglegot: 10,
                           sizegot: Size(size.width * 0.39, size.height * 0.45),
                           radiusgot: 5,
