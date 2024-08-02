@@ -37,20 +37,20 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(SearchMovie value) searchMovie,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_SearchMovie value)? searchMovie,
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(SearchMovie value)? searchMovie,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(Initialize value)? initialize,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -92,7 +92,7 @@ class __$$InitializeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitializeImpl implements _Initialize {
+class _$InitializeImpl implements Initialize {
   const _$InitializeImpl();
 
   @override
@@ -143,8 +143,8 @@ class _$InitializeImpl implements _Initialize {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(SearchMovie value) searchMovie,
   }) {
     return initialize(this);
   }
@@ -152,8 +152,8 @@ class _$InitializeImpl implements _Initialize {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_SearchMovie value)? searchMovie,
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(SearchMovie value)? searchMovie,
   }) {
     return initialize?.call(this);
   }
@@ -161,8 +161,8 @@ class _$InitializeImpl implements _Initialize {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(Initialize value)? initialize,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -172,8 +172,8 @@ class _$InitializeImpl implements _Initialize {
   }
 }
 
-abstract class _Initialize implements SearchEvent {
-  const factory _Initialize() = _$InitializeImpl;
+abstract class Initialize implements SearchEvent {
+  const factory Initialize() = _$InitializeImpl;
 }
 
 /// @nodoc
@@ -209,7 +209,7 @@ class __$$SearchMovieImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchMovieImpl implements _SearchMovie {
+class _$SearchMovieImpl implements SearchMovie {
   const _$SearchMovieImpl({required this.movieQuery});
 
   @override
@@ -272,8 +272,8 @@ class _$SearchMovieImpl implements _SearchMovie {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(SearchMovie value) searchMovie,
   }) {
     return searchMovie(this);
   }
@@ -281,8 +281,8 @@ class _$SearchMovieImpl implements _SearchMovie {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_SearchMovie value)? searchMovie,
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(SearchMovie value)? searchMovie,
   }) {
     return searchMovie?.call(this);
   }
@@ -290,8 +290,8 @@ class _$SearchMovieImpl implements _SearchMovie {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(Initialize value)? initialize,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) {
     if (searchMovie != null) {
@@ -301,8 +301,8 @@ class _$SearchMovieImpl implements _SearchMovie {
   }
 }
 
-abstract class _SearchMovie implements SearchEvent {
-  const factory _SearchMovie({required final String movieQuery}) =
+abstract class SearchMovie implements SearchEvent {
+  const factory SearchMovie({required final String movieQuery}) =
       _$SearchMovieImpl;
 
   String get movieQuery;
