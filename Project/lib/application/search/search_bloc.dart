@@ -20,30 +20,35 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       : super(SearchState.initial()) {
     //idle state
     on<Initialize>((event, emit) async {
-      //get trending
+      if (state.idleList.isNotEmpty) {
+        emit(state);
+        return;
+      }
       emit(SearchState(
         searchResultList: [],
         idleList: [],
         isloading: true,
         isError: false,
       ));
+      //get trending
       final _result = await _downloadsRepo.getdownloadsImage();
-      _result.fold((MainFailure f) {
-        emit(SearchState(
+      final _state = _result.fold((MainFailure f) {
+        SearchState(
           searchResultList: [],
           idleList: [],
           isloading: false,
           isError: true,
-        ));
+        );
       }, (List<Downloads> list) {
-        emit(SearchState(
+        SearchState(
           searchResultList: [],
           idleList: list,
           isloading: false,
           isError: false,
-        ));
+        );
       });
       //show to ui
+      emit(_state);
     });
 
     //search state

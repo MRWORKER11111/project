@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/application/search/search_bloc.dart';
 import 'package:project/core/constants.dart';
-import 'package:project/presentation/search/widgets/search_result.dart';
+import 'package:project/presentation/search/widgets/search_ideal.dart';
 
 class Screensearch extends StatelessWidget {
   const Screensearch({super.key});
@@ -36,7 +36,7 @@ class Screensearch extends StatelessWidget {
               ),
               kheight,
               // Expanded(child: const SearchIdeal()),
-              Expanded(child: const SearchResultWidget())
+              Expanded(child: const SearchIdeal())
             ],
           ),
         ),

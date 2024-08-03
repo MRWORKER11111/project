@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/application/search/search_bloc.dart';
 import 'package:project/core/colors/colors.dart';
 import 'package:project/core/constants.dart';
 import 'package:project/presentation/widgets/main_title.dart';
@@ -28,11 +30,31 @@ class SearchIdeal extends StatelessWidget {
           ),
           kheight,
           Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (ctx, index) => TopSearchTile(),
-              separatorBuilder: (ctx, index) => kheight20,
-              itemCount: 10,
+            child: BlocBuilder<SearchBloc, SearchState>(
+              builder: (context, state) {
+                if (state.isloading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state.isError) {
+                  return const Center(child: Text('Error'));
+                } else if (state.idleList.isEmpty) {
+                  return const Center(
+                    child: Text('no medias are found'),
+                  );
+                } else
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      final movie = state.idleList[index];
+                      return TopSearchTile(
+                          title: movie.title ?? "no title provided",
+                          url: imageappendurl + '${movie.posterpath}');
+                    },
+                    separatorBuilder: (ctx, index) => kheight20,
+                    itemCount: state.idleList.length,
+                  );
+              },
             ),
           )
         ],
@@ -42,7 +64,13 @@ class SearchIdeal extends StatelessWidget {
 }
 
 class TopSearchTile extends StatelessWidget {
-  const TopSearchTile({super.key});
+  final String title;
+  final String url;
+  const TopSearchTile({
+    super.key,
+    required this.title,
+    required this.url,
+  });
 
   @override
   Widget build(BuildContext context) {
