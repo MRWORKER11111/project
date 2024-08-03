@@ -90,8 +90,11 @@ class TopSearchTile extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(
+          width: 10,
+        ),
         Expanded(
-          child: MainTitle(title: 'Top Searches'),
+          child: MainTitle(title: title),
         ),
         CircleAvatar(
           backgroundColor: kwhitecolor,

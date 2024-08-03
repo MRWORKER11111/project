@@ -21,26 +21,33 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     //idle state
     on<Initialize>((event, emit) async {
       if (state.idleList.isNotEmpty) {
-        emit(state);
+        emit(SearchState(
+          searchResultList: [],
+          idleList: state.idleList,
+          isloading: false,
+          isError: false,
+        ));
         return;
       }
+
       emit(SearchState(
         searchResultList: [],
         idleList: [],
         isloading: true,
         isError: false,
       ));
+
       //get trending
       final _result = await _downloadsRepo.getdownloadsImage();
       final _state = _result.fold((MainFailure f) {
-        SearchState(
+        return SearchState(
           searchResultList: [],
           idleList: [],
           isloading: false,
           isError: true,
         );
       }, (List<Downloads> list) {
-        SearchState(
+        return SearchState(
           searchResultList: [],
           idleList: list,
           isloading: false,
@@ -52,10 +59,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     });
 
     //search state
-    on<SearchMovie>((event, emit) {
+    on<SearchMovie>((event, emit) async {
       //call search movie api
-      _searchService.searchMovies(movieQuery: event.movieQuery);
+      final _result =
+          await _searchService.searchMovies(movieQuery: event.movieQuery);
       //show to ui
+      print(_result);
     });
   }
 }

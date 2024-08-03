@@ -33,6 +33,10 @@ class Screensearch extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 style: TextStyle(color: Colors.white),
+                onChanged: (value) {
+                  BlocProvider.of<SearchBloc>(context)
+                      .add(SearchMovie(movieQuery: value));
+                },
               ),
               kheight,
               // Expanded(child: const SearchIdeal()),
