@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/application/search/search_bloc.dart';
 import 'package:project/core/constants.dart';
 import 'package:project/presentation/widgets/main_title.dart';
 
@@ -21,17 +23,22 @@ class SearchResultWidget extends StatelessWidget {
         MainTitle(title: 'Best & Best'),
         kheight,
         Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 1.2 / 1.5,
-            children: List.generate(
-              20,
-              (index) => MainCard1(),
-            ),
-          ),
+          child:
+              BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
+            return GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 3,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              childAspectRatio: 1.2 / 1.5,
+              children: List.generate(20, (index) {
+                final movie = state.searchResultList[index];
+                return MainCard1(
+                  imageurl: movie.posterPath,
+                );
+              }),
+            );
+          }),
         ),
       ],
     );
@@ -39,14 +46,15 @@ class SearchResultWidget extends StatelessWidget {
 }
 
 class MainCard1 extends StatelessWidget {
-  const MainCard1({super.key});
+  final String? imageurl;
+  const MainCard1({super.key, required this.imageurl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(imageList[0]),
+            image: NetworkImage(imageList[1]),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(5)),
