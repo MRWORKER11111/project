@@ -1,3 +1,4 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'searchresponse.g.dart';
@@ -31,7 +32,7 @@ class searchResultData {
   searchResultData({
     this.id,
     this.originalTitle,
-    this.posterPath,
+   required this.posterPath,
   });
 
   factory searchResultData.fromJson(Map<String, dynamic> json) {

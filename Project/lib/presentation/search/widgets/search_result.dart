@@ -30,11 +30,11 @@ class SearchResultWidget extends StatelessWidget {
               crossAxisCount: 3,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              childAspectRatio: 1.2 / 1.5,
-              children: List.generate(20, (index) {
+              childAspectRatio: 1 / 1.4,
+              children: List.generate(10, (index) {
                 final movie = state.searchResultList[index];
                 return MainCard1(
-                  imageurl: movie.posterPath,
+                  imageurl: imageList[0],
                 );
               }),
             );
@@ -46,15 +46,16 @@ class SearchResultWidget extends StatelessWidget {
 }
 
 class MainCard1 extends StatelessWidget {
-  final String? imageurl;
+  final String imageurl;
   const MainCard1({super.key, required this.imageurl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+    
       decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(imageList[1]),
+            image: NetworkImage(imageurl),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(5)),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -77,10 +79,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           isloading: false,
           isError: true,
         );
-      }, (Searchresponse r) {
+      }, (Searchresponse ) {
+        print("object");
+        log(Searchresponse.results.toString());
         return SearchState(
-          searchResultList: r.results,
-          idleList: [],
+          searchResultList: Searchresponse.results,
+          idleList:[],
           isloading: false,
           isError: false,
         );
