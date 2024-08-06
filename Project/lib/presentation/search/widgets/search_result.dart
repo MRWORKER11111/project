@@ -36,7 +36,7 @@ class SearchResultWidget extends StatelessWidget {
                 final movie = state.searchResultList[index];
                 return MainCard1(
                   // imageurl:imageappendurl+ movie.posterPath,
-                  imageurl: imageList[1],
+                   imageurl: imageList[1],
                 );
               }),
             );

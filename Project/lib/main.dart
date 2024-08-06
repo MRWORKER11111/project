@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/application/bloc/fast_laugh_bloc.dart';
 import 'package:project/application/downloads/downloads_bloc.dart';
 
 import 'package:project/application/search/search_bloc.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => getIt<DownloadsBloc>()),
-        BlocProvider(create: (ctx) => getIt<SearchBloc>())
+        BlocProvider(create: (ctx) => getIt<SearchBloc>()),
+        BlocProvider(create: (ctx) => getIt<FastLaughBloc>())
       ],
       child: MaterialApp(
         title: 'PROJECT',
