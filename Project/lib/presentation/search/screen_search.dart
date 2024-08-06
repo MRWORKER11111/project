@@ -1,3 +1,7 @@
+
+
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,11 +19,8 @@ final _debouncer=Debouncer(milliseconds: 1*1000);
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      {
-        BlocProvider.of<SearchBloc>(context).add(const Initialize());
-      }
-      ;
+    WidgetsBinding.instance.addPostFrameCallback((_) {     
+        BlocProvider.of<SearchBloc>(context).add(const Initialize());     
     });
     return Scaffold(
       body: SafeArea(
@@ -39,13 +40,13 @@ final _debouncer=Debouncer(milliseconds: 1*1000);
                 ),
                 style: TextStyle(color: Colors.white),
                 onChanged: (value) {
+                  log("5  " + value);
                   if (value.isEmpty){
                     return;
-                  }
-                  _debouncer.run((){
+                  }else  {_debouncer.run((){
                     BlocProvider.of<SearchBloc>(context)
-                      .add(SearchMovie(movieQuery: value));
-                  });
+                      .add( SearchMovie(movieQuery: value));
+                  });}
                   
                 },
               ),
@@ -55,12 +56,8 @@ final _debouncer=Debouncer(milliseconds: 1*1000);
                   builder: (context, state) {
                 if (state.searchResultList.isEmpty) {
                   return const SearchIdeal();
-                } else if(state.searchResultList.isNotEmpty){
+                } else {
                   return const SearchResultWidget();
-                }else{
-                  return Container(
-                    color: Colors.white24,
-                  );
                 }
               }))
             ],

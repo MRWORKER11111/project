@@ -1,5 +1,8 @@
 
 
+
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -20,13 +23,22 @@ class SearchImplentation implements SearchService {
           'query': movieQuery,
         },
       );
+  // log("4  "+ response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = Searchresponse.fromJson(response.data);
+        log('1  '+result.toString());
         return Right(result);
       } else {
         return const Left(MainFailure.serverFailure());
       }
-    } catch (e) {
+    }
+    
+    on DioException catch(e){
+      log(e.toString());
+      return const Left(MainFailure.clientFailure());
+    }
+     catch (e) {
+      log("2  "+ e.toString());
       return const Left(MainFailure.clientFailure());
     }
   }

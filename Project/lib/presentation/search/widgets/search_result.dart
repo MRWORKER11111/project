@@ -25,7 +25,8 @@ class SearchResultWidget extends StatelessWidget {
         Expanded(
           child:
               BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
-            return GridView.count(
+            return
+             GridView.count(
               shrinkWrap: true,
               crossAxisCount: 3,
               mainAxisSpacing: 8,
@@ -34,7 +35,8 @@ class SearchResultWidget extends StatelessWidget {
               children: List.generate(10, (index) {
                 final movie = state.searchResultList[index];
                 return MainCard1(
-                  imageurl: imageList[0],
+                  // imageurl:imageappendurl+ movie.posterPath,
+                  imageurl: imageList[1],
                 );
               }),
             );
@@ -52,8 +54,7 @@ class MainCard1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    
-      decoration: BoxDecoration(
+         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(imageurl),
             fit: BoxFit.cover,

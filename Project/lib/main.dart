@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'PROJECT',
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
             appBarTheme: AppBarTheme(backgroundColor: Colors.transparent),
             primarySwatch: Colors.blue,

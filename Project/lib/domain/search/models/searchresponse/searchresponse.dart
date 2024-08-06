@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+
 part 'searchresponse.g.dart';
 
 @JsonSerializable()
@@ -8,9 +9,7 @@ class Searchresponse {
   @JsonKey(name: "results")
   List<searchResultData> results;
 
-  Searchresponse({
-    this.results = const [],
-  });
+  Searchresponse({this.results = const []});
 
   factory Searchresponse.fromJson(Map<String, dynamic> json) {
     return _$SearchresponseFromJson(json);
@@ -21,16 +20,17 @@ class Searchresponse {
 
 @JsonSerializable()
 class searchResultData {
-  @JsonKey(name: 'id')
-  int? id;
+ 
   @JsonKey(name: 'original_title')
   String? originalTitle;
 
   @JsonKey(name: 'poster_path')
-  String? posterPath;
+  String posterPath;
+
+
 
   searchResultData({
-    this.id,
+    
     this.originalTitle,
    required this.posterPath,
   });
