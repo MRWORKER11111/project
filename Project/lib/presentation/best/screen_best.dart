@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/application/bloc/fast_laugh_bloc.dart';
+import 'package:project/domain/downloads/models/downloads.dart';
 import 'package:project/presentation/best/widgets/video_list_item.dart';
+
+class ScreenbestInheritedWidget extends InheritedWidget {
+  final Downloads movieData;
+
+  ScreenbestInheritedWidget({
+    required this.movieData,
+    required super.child,
+  });
+
+  @override
+  bool updateShouldNotify(covariant ScreenbestInheritedWidget oldWidget) {
+    return oldWidget.movieData != movieData;
+  }
+
+  static ScreenbestInheritedWidget? of(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<ScreenbestInheritedWidget>();
+  }
+}
 
 class Screenbest extends StatelessWidget {
   Screenbest({super.key});
@@ -29,14 +49,16 @@ class Screenbest extends StatelessWidget {
               );
             } else {
               return PageView(
-                scrollDirection: Axis.vertical,
-                children: List.generate(
-                  10,
-                  (index) => VideoListItem(
-                    index: index,
-                  ),
-                ),
-              );
+                  scrollDirection: Axis.vertical,
+                  children: List.generate(
+                      state.videolist.length,
+                      (index) => ScreenbestInheritedWidget(
+                            movieData: state.videolist[index],
+                            child: VideoListItem(
+                              key: Key(index.toString()),
+                              index: index,
+                            ),
+                          )));
             }
           },
         ),

@@ -8,11 +8,11 @@ part 'fast_laugh_event.dart';
 part 'fast_laugh_state.dart';
 part 'fast_laugh_bloc.freezed.dart';
 
-final _videourls = [
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+final dummyvideourls = [
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
 ];
 
 @injectable
@@ -22,27 +22,37 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
   ) : super(FastLaughState.initial()) {
     on<Initialize>((event, emit) async {
       emit(FastLaughState(
-        videolist: [],
-        isloading: true,
-        iserror: false,
-      ));
+          videolist: [], isloading: true, iserror: false, likedMoviesIds: []));
       //get trending movie
       final _result = await _downloadService.getdownloadsImage();
       final _state = _result.fold((l) {
-        return const FastLaughState(
-          videolist: [],
-          isloading: false,
-          iserror: true,
-        );
+        return FastLaughState(
+            videolist: [],
+            isloading: false,
+            iserror: true,
+            likedMoviesIds: state.likedMoviesIds);
       },
           (resp) => FastLaughState(
-                videolist: resp,
-                isloading: false,
-                iserror: false,
-              ));
+              videolist: resp,
+              isloading: false,
+              iserror: false,
+              likedMoviesIds: state.likedMoviesIds));
 
       //send to ui
       emit(_state);
     });
+
+    on<Likedvideo>(
+      (event, emit) async {
+        state.likedMoviesIds.add(event.id);
+        emit(state.copyWith(likedMoviesIds: state.likedMoviesIds));
+      },
+    );
+    on<Unlikedvideo>(
+      (event, emit) async {
+        state.likedMoviesIds.remove(event.id);
+        emit(state.copyWith(likedMoviesIds: state.likedMoviesIds));
+      },
+    );
   }
 }

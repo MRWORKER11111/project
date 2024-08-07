@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/application/bloc/fast_laugh_bloc.dart';
 import 'package:project/core/colors/colors.dart';
+import 'package:project/core/constants.dart';
+import 'package:project/presentation/best/screen_best.dart';
+import 'package:video_player/video_player.dart';
+import 'package:share_plus/share_plus.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
@@ -10,11 +16,13 @@ class VideoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _posterpath =
+        ScreenbestInheritedWidget.of(context)?.movieData.posterpath;
+    final videourl = dummyvideourls[index % dummyvideourls.length];
+
     return Stack(
       children: [
-        Container(
-          color: Colors.accents[index % Colors.accents.length],
-        ),
+        fastlaughvideoplayer(url: videourl, onstatechanged: (bool) {}),
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -47,22 +55,36 @@ class VideoListItem extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
                         radius: 20,
-                        backgroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8txrGEytl7a4iztKJbzeERdUmUcJl61CneQ&s",
-                        ),
+                        backgroundImage: _posterpath == null
+                            ? null
+                            : NetworkImage(imageappendurl + _posterpath),
                       ),
                     ),
-                    videoActionsWidget(
-                      icon: Icons.emoji_emotions,
-                      title: "LOL",
+                    BlocBuilder<FastLaughBloc, FastLaughState>(
+                      builder: (context, state) {
+                        return videoActionsWidget(
+                          icon: Icons.emoji_emotions,
+                          title: "LOL",
+                        );
+                      },
                     ),
                     videoActionsWidget(
                       icon: Icons.add,
                       title: "My List",
                     ),
-                    videoActionsWidget(
-                      icon: Icons.share,
-                      title: "Share",
+                    GestureDetector(
+                      onTap: () {
+                        final movieName = ScreenbestInheritedWidget.of(context)
+                            ?.movieData
+                            .title;
+                        if (movieName != null) {
+                          Share.share(movieName);
+                        }
+                      },
+                      child: videoActionsWidget(
+                        icon: Icons.share,
+                        title: "Share",
+                      ),
                     ),
                     videoActionsWidget(
                       icon: Icons.play_arrow,
@@ -110,5 +132,57 @@ class videoActionsWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class fastlaughvideoplayer extends StatefulWidget {
+  final String url;
+  final void Function(bool isplaying) onstatechanged;
+
+  const fastlaughvideoplayer(
+      {super.key, required this.url, required this.onstatechanged});
+
+  @override
+  State<fastlaughvideoplayer> createState() => _fastlaughvideoplayerState();
+}
+
+class _fastlaughvideoplayerState extends State<fastlaughvideoplayer> {
+  late VideoPlayerController _videoPlayerController;
+
+  @override
+  void initState() {
+    _videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.url));
+    _videoPlayerController.initialize().then(
+      (value) {
+        setState(() {
+          _videoPlayerController.play();
+        });
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: _videoPlayerController.value.isInitialized
+            ? AspectRatio(
+                aspectRatio: _videoPlayerController.value.aspectRatio,
+                child: VideoPlayer(_videoPlayerController),
+              )
+            : Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                ),
+              ));
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    super.dispose();
   }
 }
