@@ -12,6 +12,7 @@ class FastLaughState with _$FastLaughState {
   factory FastLaughState.initial() => FastLaughState(
         videolist: [],
         isloading: true,
-        iserror: false, likedMoviesIds: [],
+        iserror: false,
+        likedMoviesIds: [],
       );
 }

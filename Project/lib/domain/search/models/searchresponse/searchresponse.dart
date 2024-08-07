@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'searchresponse.g.dart';
 
 @JsonSerializable()
@@ -20,19 +19,15 @@ class Searchresponse {
 
 @JsonSerializable()
 class searchResultData {
- 
   @JsonKey(name: 'original_title')
   String? originalTitle;
 
   @JsonKey(name: 'poster_path')
   String posterPath;
 
-
-
   searchResultData({
-    
     this.originalTitle,
-   required this.posterPath,
+    required this.posterPath,
   });
 
   factory searchResultData.fromJson(Map<String, dynamic> json) {

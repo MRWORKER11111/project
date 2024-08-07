@@ -72,7 +72,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       ));
       final _result =
           await _searchService.searchMovies(movieQuery: event.movieQuery);
-          print("result searchmovie 3 ${_result}");
+      print("result searchmovie 3 ${_result}");
       //show to ui
       final _state = _result.fold((MainFailure f) {
         return const SearchState(
@@ -83,10 +83,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         );
       }, (Searchresponse r) {
         print("object");
-        log('searchbloc 86 :  '+r.results.toString());
+        log('searchbloc 86 :  ' + r.results.toString());
         return SearchState(
           searchResultList: r.results,
-          idleList:[],
+          idleList: [],
           isloading: false,
           isError: false,
         );

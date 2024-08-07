@@ -3,23 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project/core/colors/colors.dart';
 import 'package:project/core/constants.dart';
 
-buildCommingSoon(BuildContext context) {
-  return ListView.separated(
-    separatorBuilder: (BuildContext context, int index) {
-      return SizedBox(
-        width: 0,
-      );
-    },
-    itemCount: 10,
-    itemBuilder: (BuildContext context, int index) {
-      return CommingSoonWidget();
-    },
-  );
-}
-
 class CommingSoonWidget extends StatelessWidget {
+  final String id;
+  final String month;
+  final String day;
+  final String posterpath;
+  final String movieName;
+  final String Description;
   const CommingSoonWidget({
     super.key,
+    required this.id,
+    required this.month,
+    required this.day,
+    required this.posterpath,
+    required this.movieName,
+    required this.Description,
   });
 
   @override

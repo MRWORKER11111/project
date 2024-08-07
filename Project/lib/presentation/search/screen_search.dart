@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -12,15 +10,14 @@ import 'package:project/presentation/search/widgets/search_ideal.dart';
 import 'package:project/presentation/search/widgets/search_result.dart';
 
 class Screensearch extends StatelessWidget {
-   Screensearch({super.key});
+  Screensearch({super.key});
 
-final _debouncer=Debouncer(milliseconds: 1*1000);
-
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {     
-        BlocProvider.of<SearchBloc>(context).add(const Initialize());     
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<SearchBloc>(context).add(const Initialize());
     });
     return Scaffold(
       body: SafeArea(
@@ -41,17 +38,17 @@ final _debouncer=Debouncer(milliseconds: 1*1000);
                 style: TextStyle(color: Colors.white),
                 onChanged: (value) {
                   log("5  " + value);
-                  if (value.isEmpty){
+                  if (value.isEmpty) {
                     return;
-                  }else  {_debouncer.run((){
-                    BlocProvider.of<SearchBloc>(context)
-                      .add( SearchMovie(movieQuery: value));
-                  });}
-                  
+                  } else {
+                    _debouncer.run(() {
+                      BlocProvider.of<SearchBloc>(context)
+                          .add(SearchMovie(movieQuery: value));
+                    });
+                  }
                 },
               ),
               kheight,
-            
               Expanded(child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                 if (state.searchResultList.isEmpty) {

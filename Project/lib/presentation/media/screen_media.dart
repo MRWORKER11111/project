@@ -62,3 +62,42 @@ class ScreenMedia extends StatelessWidget {
     );
   }
 }
+
+buildEveryonesWatching(BuildContext context) {
+  return ListView.separated(
+    separatorBuilder: (BuildContext context, int index) {
+      return SizedBox(
+        width: 0,
+      );
+    },
+    itemCount: 10,
+    itemBuilder: (BuildContext context, int index) {
+      return EveryonesWatchingWidget(
+        posterpath: '',
+        movieName: '',
+        Description: '',
+      );
+    },
+  );
+}
+
+buildCommingSoon(BuildContext context) {
+  return ListView.separated(
+    separatorBuilder: (BuildContext context, int index) {
+      return SizedBox(
+        width: 0,
+      );
+    },
+    itemCount: 10,
+    itemBuilder: (BuildContext context, int index) {
+      return CommingSoonWidget(
+        id: '',
+        month: '',
+        day: '',
+        posterpath: '',
+        movieName: '',
+        Description: '',
+      );
+    },
+  );
+}
