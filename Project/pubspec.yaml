@@ -38,7 +38,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   get_it: ^7.2.0
   google_fonts: null
-  injectable: ^1.5.3
+  injectable: ^2.4.4
   json_serializable: ^6.8.0
   share_plus: ^10.0.0
   video_player: null
@@ -49,7 +49,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: null
-  injectable_generator: ^1.5.3
+  injectable_generator: ^2.6.2
   json_annotation: ^4.9.0
 
 # For information on the generic Dart part of this file, see the

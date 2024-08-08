@@ -1,6 +1,3 @@
-
-
-
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -23,22 +20,19 @@ class SearchImplentation implements SearchService {
           'query': movieQuery,
         },
       );
-  // log("4  "+ response.data.toString());
+      // log("4  "+ response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = Searchresponse.fromJson(response.data);
-        log('1  '+result.toString());
+        log('1  ' + result.toString());
         return Right(result);
       } else {
         return const Left(MainFailure.serverFailure());
       }
-    }
-    
-    on DioException catch(e){
+    } on DioException catch (e) {
       log(e.toString());
       return const Left(MainFailure.clientFailure());
-    }
-     catch (e) {
-      log("2  "+ e.toString());
+    } catch (e) {
+      log("2  " + e.toString());
       return const Left(MainFailure.clientFailure());
     }
   }

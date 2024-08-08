@@ -5,23 +5,15 @@ import 'package:project/core/colors/colors.dart';
 import 'package:project/core/constants.dart';
 import 'package:project/presentation/media/commingsoonwidget.dart';
 
-buildEveryonesWatching(BuildContext context) {
-  return ListView.separated(
-    separatorBuilder: (BuildContext context, int index) {
-      return SizedBox(
-        width: 0,
-      );
-    },
-    itemCount: 10,
-    itemBuilder: (BuildContext context, int index) {
-      return EveryonesWatchingWidget();
-    },
-  );
-}
-
 class EveryonesWatchingWidget extends StatelessWidget {
+  final String posterpath;
+  final String movieName;
+  final String Description;
   const EveryonesWatchingWidget({
-    super.key,
+    super.key, 
+    required this.posterpath,
+    required this.movieName,
+    required this.Description,
   });
 
   @override
