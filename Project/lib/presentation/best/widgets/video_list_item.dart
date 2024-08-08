@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/application/bloc/fast_laugh_bloc.dart';
+
+import 'package:project/application/fastlaugh/fast_laugh_bloc.dart';
 import 'package:project/core/colors/colors.dart';
 import 'package:project/core/constants.dart';
 import 'package:project/presentation/best/screen_best.dart';
@@ -60,12 +60,35 @@ class VideoListItem extends StatelessWidget {
                             : NetworkImage(imageappendurl + _posterpath),
                       ),
                     ),
-                    BlocBuilder<FastLaughBloc, FastLaughState>(
-                      builder: (context, state) {
-                        return videoActionsWidget(
-                          icon: Icons.emoji_emotions,
-                          title: "LOL",
-                        );
+                    ValueListenableBuilder(
+                      valueListenable: likedvideosidsnotifier,
+                      builder: (BuildContext c, Set<int> newlikedlistids,
+                          Widget? _) {
+                        final _index = index;
+                        if (newlikedlistids.contains(_index)) {
+                          return GestureDetector(
+                            onTap: () {
+                              // BlocProvider.of<FastLaughBloc>(context).add(Unlikedvideo(id: _index));
+                              likedvideosidsnotifier.value.remove(_index);
+                              likedvideosidsnotifier.notifyListeners();
+                            },
+                            child: videoActionsWidget(
+                              icon: Icons.favorite_outline,
+                              title: "Liked",
+                            ),
+                          );
+                        } else
+                          return GestureDetector(
+                            onTap: () {
+                              // BlocProvider.of<FastLaughBloc>(context).add(Likedvideo(id: _index));
+                              likedvideosidsnotifier.value.add(_index);
+                              likedvideosidsnotifier.notifyListeners();
+                            },
+                            child: videoActionsWidget(
+                              icon: Icons.emoji_emotions,
+                              title: "LOL",
+                            ),
+                          );
                       },
                     ),
                     videoActionsWidget(

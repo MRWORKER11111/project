@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/application/bloc/fast_laugh_bloc.dart';
+import 'package:project/application/fastlaugh/fast_laugh_bloc.dart';
 import 'package:project/domain/downloads/models/downloads.dart';
 import 'package:project/presentation/best/widgets/video_list_item.dart';
 

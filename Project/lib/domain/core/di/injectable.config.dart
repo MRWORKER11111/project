@@ -8,8 +8,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../application/bloc/fast_laugh_bloc.dart' as _i8;
 import '../../../application/downloads/downloads_bloc.dart' as _i7;
+import '../../../application/fastlaugh/fast_laugh_bloc.dart' as _i8;
 import '../../../application/search/search_bloc.dart' as _i9;
 import '../../../infrastructure/downloads/downloads_repository.dart' as _i4;
 import '../../../infrastructure/search/search_implentation.dart' as _i6;
