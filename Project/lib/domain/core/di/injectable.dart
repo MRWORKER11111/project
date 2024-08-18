@@ -8,5 +8,3 @@ final getIt = GetIt.instance;
 Future<void> configureInjection() async {
   await $initGetIt(getIt, environment: Environment.prod);
 }
-
-

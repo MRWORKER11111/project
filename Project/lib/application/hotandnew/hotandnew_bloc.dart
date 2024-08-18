@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:project/domain/core/failures/main_failure.dart';
 import 'package:project/domain/hotandnew/hotandnewservice.dart';
