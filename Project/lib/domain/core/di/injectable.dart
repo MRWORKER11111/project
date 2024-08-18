@@ -4,7 +4,7 @@ import 'package:project/domain/core/di/injectable.config.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit()
+@InjectableInit(asExtension:false)
 Future<void> configureInjection() async {
-  await $initGetIt(getIt, environment: Environment.prod);
+  await init(getIt, environment: Environment.prod);
 }

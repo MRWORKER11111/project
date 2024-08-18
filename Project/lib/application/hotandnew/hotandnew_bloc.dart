@@ -13,27 +13,36 @@ class HotandnewBloc extends Bloc<HotandnewEvent, HotandnewState> {
   final Hotandnewservice _hotandnewservice;
   HotandnewBloc(this._hotandnewservice) : super(HotandnewState.initial()) {
     on<_LoaddataCommingSoon>((event, emit) async {
+      //send loading to ui
       emit(const HotandnewState(
         commingsoonList: [],
         everyoneisWatchingList: [],
         isLoading: true,
         isError: false,
       ));
+
+      //get data from remote
       final _result = await _hotandnewservice.getHotandNewMovieData();
-      _result.fold((MainFailure failure) {
+
+      //data to state
+      final newstate = _result.fold((MainFailure failure) {
         return const HotandnewState(
           commingsoonList: [],
           everyoneisWatchingList: [],
           isLoading: false,
-          isError: false,
+          isError: true,
         );
       }, (HotandnewResp resp) {
         return HotandnewState(
             commingsoonList: resp.results,
-            everyoneisWatchingList: [],
+            everyoneisWatchingList: state.everyoneisWatchingList,
             isLoading: false,
             isError: false);
       });
+      emit(newstate);
     });
+    on<_LoaddataEveryoneswatching>(
+      (event, emit) {},
+    );
   }
 }

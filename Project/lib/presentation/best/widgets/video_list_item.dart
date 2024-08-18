@@ -204,9 +204,5 @@ class _fastlaughvideoplayerState extends State<fastlaughvideoplayer> {
               ));
   }
 
-  @override
-  void dispose() {
-    _videoPlayerController.dispose();
-    super.dispose();
-  }
+  
 }
