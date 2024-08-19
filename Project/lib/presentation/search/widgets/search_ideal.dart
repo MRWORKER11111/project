@@ -37,7 +37,7 @@ class SearchIdeal extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state.isError) {
-                  return const Center(child: Text('Error'));
+                  return const Center(child: Text('Error in search_ideal 40'));
                 } else if (state.idleList.isEmpty) {
                   return const Center(
                     child: Text('no medias are found'),

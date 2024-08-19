@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:project/domain/core/failures/main_failure.dart';
 import 'package:project/domain/hotandnew/hotandnewservice.dart';
 import 'package:project/domain/hotandnew/models/hotandnew.dart';
@@ -9,10 +10,12 @@ part 'hotandnew_event.dart';
 part 'hotandnew_state.dart';
 part 'hotandnew_bloc.freezed.dart';
 
+@injectable
 class HotandnewBloc extends Bloc<HotandnewEvent, HotandnewState> {
   final Hotandnewservice _hotandnewservice;
   HotandnewBloc(this._hotandnewservice) : super(HotandnewState.initial()) {
-    on<_LoaddataCommingSoon>((event, emit) async {
+    //get hot and new movie data
+    on<LoaddataCommingSoon>((event, emit) async {
       //send loading to ui
       emit(const HotandnewState(
         commingsoonList: [],
@@ -41,7 +44,7 @@ class HotandnewBloc extends Bloc<HotandnewEvent, HotandnewState> {
       });
       emit(newstate);
     });
-    on<_LoaddataEveryoneswatching>(
+    on<LoaddataEveryoneswatching>(
       (event, emit) {},
     );
   }

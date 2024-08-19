@@ -37,22 +37,22 @@ mixin _$HotandnewEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoaddataCommingSoon value) loaddataCommingSoon,
-    required TResult Function(_LoaddataEveryoneswatching value)
+    required TResult Function(LoaddataCommingSoon value) loaddataCommingSoon,
+    required TResult Function(LoaddataEveryoneswatching value)
         loaddataEveryoneswatching,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoaddataCommingSoon value)? loaddataCommingSoon,
-    TResult? Function(_LoaddataEveryoneswatching value)?
+    TResult? Function(LoaddataCommingSoon value)? loaddataCommingSoon,
+    TResult? Function(LoaddataEveryoneswatching value)?
         loaddataEveryoneswatching,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoaddataCommingSoon value)? loaddataCommingSoon,
-    TResult Function(_LoaddataEveryoneswatching value)?
+    TResult Function(LoaddataCommingSoon value)? loaddataCommingSoon,
+    TResult Function(LoaddataEveryoneswatching value)?
         loaddataEveryoneswatching,
     required TResult orElse(),
   }) =>
@@ -95,7 +95,7 @@ class __$$LoaddataCommingSoonImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoaddataCommingSoonImpl implements _LoaddataCommingSoon {
+class _$LoaddataCommingSoonImpl implements LoaddataCommingSoon {
   const _$LoaddataCommingSoonImpl();
 
   @override
@@ -147,8 +147,8 @@ class _$LoaddataCommingSoonImpl implements _LoaddataCommingSoon {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoaddataCommingSoon value) loaddataCommingSoon,
-    required TResult Function(_LoaddataEveryoneswatching value)
+    required TResult Function(LoaddataCommingSoon value) loaddataCommingSoon,
+    required TResult Function(LoaddataEveryoneswatching value)
         loaddataEveryoneswatching,
   }) {
     return loaddataCommingSoon(this);
@@ -157,8 +157,8 @@ class _$LoaddataCommingSoonImpl implements _LoaddataCommingSoon {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoaddataCommingSoon value)? loaddataCommingSoon,
-    TResult? Function(_LoaddataEveryoneswatching value)?
+    TResult? Function(LoaddataCommingSoon value)? loaddataCommingSoon,
+    TResult? Function(LoaddataEveryoneswatching value)?
         loaddataEveryoneswatching,
   }) {
     return loaddataCommingSoon?.call(this);
@@ -167,8 +167,8 @@ class _$LoaddataCommingSoonImpl implements _LoaddataCommingSoon {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoaddataCommingSoon value)? loaddataCommingSoon,
-    TResult Function(_LoaddataEveryoneswatching value)?
+    TResult Function(LoaddataCommingSoon value)? loaddataCommingSoon,
+    TResult Function(LoaddataEveryoneswatching value)?
         loaddataEveryoneswatching,
     required TResult orElse(),
   }) {
@@ -179,8 +179,8 @@ class _$LoaddataCommingSoonImpl implements _LoaddataCommingSoon {
   }
 }
 
-abstract class _LoaddataCommingSoon implements HotandnewEvent {
-  const factory _LoaddataCommingSoon() = _$LoaddataCommingSoonImpl;
+abstract class LoaddataCommingSoon implements HotandnewEvent {
+  const factory LoaddataCommingSoon() = _$LoaddataCommingSoonImpl;
 }
 
 /// @nodoc
@@ -203,7 +203,7 @@ class __$$LoaddataEveryoneswatchingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoaddataEveryoneswatchingImpl implements _LoaddataEveryoneswatching {
+class _$LoaddataEveryoneswatchingImpl implements LoaddataEveryoneswatching {
   const _$LoaddataEveryoneswatchingImpl();
 
   @override
@@ -255,8 +255,8 @@ class _$LoaddataEveryoneswatchingImpl implements _LoaddataEveryoneswatching {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoaddataCommingSoon value) loaddataCommingSoon,
-    required TResult Function(_LoaddataEveryoneswatching value)
+    required TResult Function(LoaddataCommingSoon value) loaddataCommingSoon,
+    required TResult Function(LoaddataEveryoneswatching value)
         loaddataEveryoneswatching,
   }) {
     return loaddataEveryoneswatching(this);
@@ -265,8 +265,8 @@ class _$LoaddataEveryoneswatchingImpl implements _LoaddataEveryoneswatching {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoaddataCommingSoon value)? loaddataCommingSoon,
-    TResult? Function(_LoaddataEveryoneswatching value)?
+    TResult? Function(LoaddataCommingSoon value)? loaddataCommingSoon,
+    TResult? Function(LoaddataEveryoneswatching value)?
         loaddataEveryoneswatching,
   }) {
     return loaddataEveryoneswatching?.call(this);
@@ -275,8 +275,8 @@ class _$LoaddataEveryoneswatchingImpl implements _LoaddataEveryoneswatching {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoaddataCommingSoon value)? loaddataCommingSoon,
-    TResult Function(_LoaddataEveryoneswatching value)?
+    TResult Function(LoaddataCommingSoon value)? loaddataCommingSoon,
+    TResult Function(LoaddataEveryoneswatching value)?
         loaddataEveryoneswatching,
     required TResult orElse(),
   }) {
@@ -287,8 +287,8 @@ class _$LoaddataEveryoneswatchingImpl implements _LoaddataEveryoneswatching {
   }
 }
 
-abstract class _LoaddataEveryoneswatching implements HotandnewEvent {
-  const factory _LoaddataEveryoneswatching() = _$LoaddataEveryoneswatchingImpl;
+abstract class LoaddataEveryoneswatching implements HotandnewEvent {
+  const factory LoaddataEveryoneswatching() = _$LoaddataEveryoneswatchingImpl;
 }
 
 /// @nodoc

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/application/hotandnew/hotandnew_bloc.dart';
 import 'package:project/core/colors/colors.dart';
-import 'package:project/core/constants.dart';
 import 'package:project/presentation/media/Everyonewatching_widget.dart';
 import 'package:project/presentation/media/commingsoonwidget.dart';
 import 'package:project/presentation/widgets/appbar_widget.dart';
@@ -111,7 +110,7 @@ class commingsoonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_){
-      BlocProvider.of<HotandnewBloc>(context).add(HotandnewEvent.loaddataCommingSoon());
+      BlocProvider.of<HotandnewBloc>(context).add(const LoaddataCommingSoon());
     });
     return BlocBuilder<HotandnewBloc, HotandnewState>(
       builder: (context, state) {
@@ -120,6 +119,7 @@ class commingsoonList extends StatelessWidget {
             child: CircularProgressIndicator.adaptive(
               strokeWidth: 2,
             ),
+
           );
         } else if (state.isError) {
           return const Center(

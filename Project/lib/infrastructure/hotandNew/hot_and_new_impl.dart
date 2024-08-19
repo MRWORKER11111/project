@@ -8,7 +8,7 @@ import 'package:project/domain/core/failures/main_failure.dart';
 import 'package:project/domain/hotandnew/hotandnewservice.dart';
 import 'package:project/domain/hotandnew/models/hotandnew.dart';
 
-@lazySingleton
+@LazySingleton(as:Hotandnewservice )
 class HotandNewImplementation implements Hotandnewservice {
   @override
   Future<Either<MainFailure, HotandnewResp>> getHotandNewMovieData() async {

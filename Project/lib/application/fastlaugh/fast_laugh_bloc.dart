@@ -31,13 +31,12 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
       ));
       //get trending movie
       final _result = await _downloadService.getdownloadsImage();
-      final _state = _result.fold((l) {
-        return FastLaughState(
-          videolist: [],
-          isloading: false,
-          iserror: true,
-        );
-      },
+      final _state = _result.fold(
+          (l) => FastLaughState(
+                videolist: [],
+                isloading: false,
+                iserror: true,
+              ),
           (resp) => FastLaughState(
                 videolist: resp,
                 isloading: false,
