@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:project/application/hotandnew/hotandnew_bloc.dart';
 import 'package:project/core/colors/colors.dart';
 import 'package:project/presentation/media/Everyonewatching_widget.dart';
@@ -54,7 +55,9 @@ class ScreenMedia extends StatelessWidget {
             padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
             child: TabBarView(
               children: [
-             const   commingsoonList(key: Key('comming_soon'),),
+                const commingsoonList(
+                  key: Key('comming_soon'),
+                ),
                 buildEveryonesWatching(context),
               ],
             ),
@@ -105,11 +108,11 @@ buildEveryonesWatching(BuildContext context) {
 // }
 
 class commingsoonList extends StatelessWidget {
-  const commingsoonList({Key? key}):super(key: key);
+  const commingsoonList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<HotandnewBloc>(context).add(const LoaddataCommingSoon());
     });
     return BlocBuilder<HotandnewBloc, HotandnewState>(
@@ -119,7 +122,6 @@ class commingsoonList extends StatelessWidget {
             child: CircularProgressIndicator.adaptive(
               strokeWidth: 2,
             ),
-
           );
         } else if (state.isError) {
           return const Center(
@@ -139,17 +141,29 @@ class commingsoonList extends StatelessWidget {
             itemCount: state.commingsoonList.length,
             itemBuilder: (BuildContext context, int index) {
               final movie = state.commingsoonList[index];
-              if (movie.id ==null){
+              if (movie.id == null) {
                 return const SizedBox();
               }
-              
+              //log('screenmedia 147  ' + movie.releaseDate!);
+                //log('screenmedia  150  ' + FormatedDate);
+                String hMonth='';
+                String hDay='';
+              try{
+                final _date = DateTime.parse(movie.releaseDate!);
+              final FormatedDate = DateFormat.MMMMd('en_US').format(_date);
+            hMonth=FormatedDate.split(' ').first.substring(0,3).toUpperCase();
+            hDay= movie.releaseDate!.split('-')[1];
+              }catch(_){
+                hMonth='';
+                hDay='';
+              }
               return CommingSoonWidget(
                 id: movie.id.toString(),
-                month: '',
-                day: '',
-                posterpath:movie.posterPath ?? 'No posterpath',
-                movieName: movie.originalTitle ??'No title',
-                Description:movie.overview ?? 'No description',
+                month: hMonth,
+                day:hDay,
+                posterpath: movie.posterPath ?? 'No posterpath',
+                movieName: movie.originalTitle ?? 'No title',
+                Description: movie.overview ?? 'No description',
               );
             },
           );

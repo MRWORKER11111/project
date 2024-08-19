@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/core/colors/colors.dart';
 import 'package:project/core/constants.dart';
-import 'package:project/presentation/media/commingsoonwidget.dart';
+import 'package:project/presentation/media/widgets/mediabutton.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
   final String posterpath;
