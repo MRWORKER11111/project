@@ -17,13 +17,13 @@ class VideoWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 200,
+          height: 230,
           width: screenSize.width - 45,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(
                  posterpath,
-              ),   fit: BoxFit.cover,
+              ),   fit: BoxFit.contain,
             ),
           ),
         ),

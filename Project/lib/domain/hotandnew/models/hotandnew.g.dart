@@ -32,11 +32,11 @@ HotandNewData _$HotandNewDataFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       originalTitle: json['original_title'] as String?,
       overview: json['overview'] as String?,
-      posterPath: json[''] as String?,
+      posterPath: json['poster_path'] as String?,
       releaseDate: json['release_date'] as String?,
       title: json['title'] as String?,
       video: json['video'] as bool?,
-    );
+    )..originalName = json['original_name'] as String?;
 
 Map<String, dynamic> _$HotandNewDataToJson(HotandNewData instance) =>
     <String, dynamic>{
@@ -44,8 +44,9 @@ Map<String, dynamic> _$HotandNewDataToJson(HotandNewData instance) =>
       'backdrop_path': instance.backdropPath,
       'id': instance.id,
       'original_title': instance.originalTitle,
+      'original_name': instance.originalName,
       'overview': instance.overview,
-      '': instance.posterPath,
+      'poster_path': instance.posterPath,
       'release_date': instance.releaseDate,
       'title': instance.title,
       'video': instance.video,
