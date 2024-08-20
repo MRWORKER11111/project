@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:project/core/colors/colors.dart';
 
@@ -16,15 +15,24 @@ class VideoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
+        SizedBox(
           height: 230,
           width: screenSize.width - 45,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(
-                 posterpath,
-              ),   fit: BoxFit.contain,
-            ),
+          child: Image.network(
+            posterpath,
+            fit: BoxFit.contain,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return const Center(
+                  child: Icon(
+                    Icons.wifi,
+                    color: Colors.white,
+                  ),
+                );
+              }
+            },
           ),
         ),
         Positioned(
