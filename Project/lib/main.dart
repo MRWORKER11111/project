@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:project/application/downloads/downloads_bloc.dart';
 import 'package:project/application/fastlaugh/fast_laugh_bloc.dart';
+import 'package:project/application/home/home_bloc.dart';
 import 'package:project/application/hotandnew/hotandnew_bloc.dart';
 
 import 'package:project/application/search/search_bloc.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<SearchBloc>()),
         BlocProvider(create: (ctx) => getIt<FastLaughBloc>()),
         BlocProvider(create: (ctx) => getIt<HotandnewBloc>()),
+        BlocProvider(create: (ctx) => getIt<HomeBloc>()),
       ],
       child: MaterialApp(
         title: 'PROJECT',

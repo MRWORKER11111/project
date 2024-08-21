@@ -28,7 +28,8 @@ class VideoWidget extends StatelessWidget {
                 return const Center(
                   child: Icon(
                     Icons.wifi,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 89, 89, 89),
+                    size:80
                   ),
                 );
               }

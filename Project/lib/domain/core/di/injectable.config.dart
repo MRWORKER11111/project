@@ -12,6 +12,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:project/application/downloads/downloads_bloc.dart' as _i450;
 import 'package:project/application/fastlaugh/fast_laugh_bloc.dart' as _i25;
+import 'package:project/application/home/home_bloc.dart' as _i462;
 import 'package:project/application/hotandnew/hotandnew_bloc.dart' as _i907;
 import 'package:project/application/search/search_bloc.dart' as _i193;
 import 'package:project/domain/downloads/i_downloads_repo.dart' as _i1066;
@@ -49,5 +50,7 @@ _i174.GetIt init(
       ));
   gh.factory<_i25.FastLaughBloc>(
       () => _i25.FastLaughBloc(gh<_i1066.IDownloadsRepo>()));
+  gh.factory<_i462.HomeBloc>(
+      () => _i462.HomeBloc(gh<_i317.Hotandnewservice>()));
   return getIt;
 }
