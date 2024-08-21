@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/application/home/home_bloc.dart';
 import 'package:project/core/constants.dart';
 import 'package:project/presentation/home/backgroundcard.dart';
 import 'package:project/presentation/home/number_card.dart';
@@ -15,6 +17,9 @@ class Screenhome extends StatelessWidget {
       "https://i.pinimg.com/originals/33/e5/db/33e5dbd84db1702df446b195ce049218.jpg";
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HomeBloc>(context).add(const GetHomeScreenData());
+    });
     return Scaffold(
       body: ValueListenableBuilder(
         valueListenable: scrollnotifier,
@@ -34,26 +39,32 @@ class Screenhome extends StatelessWidget {
               },
               child: Stack(
                 children: [
-                  ListView(
-                    children: [
-                      Backgroundcard(),
-                      backgroundcardicons(),
-                      MainTitleCard(
-                        title: "Released in The Past Year",
-                      ),
-                      MainTitleCard(
-                        title: "Trending Now",
-                      ),
-                      special_title_card(),
-                      MainTitleCard(
-                        title: "Title 3",
-                      ),
-                      MainTitleCard(
-                        title: "The Best",
-                      ),
-                      kheight
-                    ],
-                  ),
+                  BlocBuilder<HomeBloc,HomeState>(builder: (context, State) {
+                    return ListView(
+                      children: [
+                        Backgroundcard(),
+                        backgroundcardicons(),
+                        MainTitleCard(
+                          title: "Released in The Past Year",
+                          posterurlList: [],
+                        ),
+                        MainTitleCard(
+                          title: "Trending Now",
+                          posterurlList: [],
+                        ),
+                        special_title_card(),
+                        MainTitleCard(
+                          title: "Title 3",
+                          posterurlList: [],
+                        ),
+                        MainTitleCard(
+                          title: "The Best",
+                          posterurlList: [],
+                        ),
+                        kheight
+                      ],
+                    );
+                  }),
                   scrollnotifier.value == true
                       ? AnimatedContainer(
                           duration: Duration(milliseconds: 1000),

@@ -54,8 +54,8 @@ class ScreenMedia extends StatelessWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-            child: const TabBarView(
-              children: [
+            child:const TabBarView(
+              children:  [
                 commingsoonList(
                   key: Key('comming_soon'),
                 ),
@@ -79,61 +79,69 @@ class commingsoonList extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<HotandnewBloc>(context).add(const LoaddataCommingSoon());
     });
-    return BlocBuilder<HotandnewBloc, HotandnewState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(
-              strokeWidth: 2,
-            ),
-          );
-        } else if (state.isError) {
-          return const Center(
-            child: Text('error while loading comming soon list'),
-          );
-        } else if (state.commingsoonList.isEmpty) {
-          return const Center(
-            child: Text('comming soon list is empty'),
-          );
-        } else {
-          return ListView.separated(
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                width: 0,
-              );
-            },
-            itemCount: state.commingsoonList.length,
-            itemBuilder: (BuildContext context, int index) {
-              final movie = state.commingsoonList[index];
-              if (movie.id == null) {
-                return const SizedBox();
-              }
-              //log('screenmedia 147  ' + movie.releaseDate!);
-              //log('screenmedia  150  ' + FormatedDate);
-              String hMonth = '';
-              String hDay = '';
-              try {
-                final _date = DateTime.parse(movie.releaseDate!);
-                final FormatedDate = DateFormat.MMMMd('en_US').format(_date);
-                hMonth =
-                    FormatedDate.split(' ').first.substring(0, 3).toUpperCase();
-                hDay = movie.releaseDate!.split('-')[1];
-              } catch (_) {
-                hMonth = '';
-                hDay = '';
-              }
-              return CommingSoonWidget(
-                id: movie.id.toString(),
-                month: hMonth,
-                day: hDay,
-                posterpath: movie.posterPath ?? 'No posterpath',
-                movieName: movie.originalTitle ?? 'No title',
-                Description: movie.overview ?? 'No description',
-              );
-            },
-          );
-        }
+    return RefreshIndicator(
+      onRefresh: () async {
+        BlocProvider.of<HotandnewBloc>(context)
+            .add(const LoaddataCommingSoon());
       },
+      child: BlocBuilder<HotandnewBloc, HotandnewState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(
+                strokeWidth: 2,
+              ),
+            );
+          } else if (state.isError) {
+            return const Center(
+              child: Text('error while loading comming soon list'),
+            );
+          } else if (state.commingsoonList.isEmpty) {
+            return const Center(
+              child: Text('comming soon list is empty'),
+            );
+          } else {
+            return ListView.separated(
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  width: 0,
+                );
+              },
+              itemCount: state.commingsoonList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final movie = state.commingsoonList[index];
+                if (movie.id == null) {
+                  return const SizedBox();
+                }
+                //log('screenmedia 147  ' + movie.releaseDate!);
+                //log('screenmedia  150  ' + FormatedDate);
+                String hMonth = '';
+                String hDay = '';
+                try {
+                  final _date = DateTime.parse(movie.releaseDate!);
+                  final FormatedDate = DateFormat.MMMMd('en_US').format(_date);
+                  hMonth = FormatedDate.split(' ')
+                      .first
+                      .substring(0, 3)
+                      .toUpperCase();
+                  hDay = movie.releaseDate!.split('-')[1];
+                } catch (_) {
+                  hMonth = '';
+                  hDay = '';
+                }
+                return CommingSoonWidget(
+                  id: movie.id.toString(),
+                  month: hMonth,
+                  day: hDay,
+                  posterpath: movie.posterPath ?? 'No posterpath',
+                  movieName: movie.originalTitle ?? 'No title',
+                  Description: movie.overview ?? 'No description',
+                );
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -147,46 +155,54 @@ class everyoneisWatchingList extends StatelessWidget {
       BlocProvider.of<HotandnewBloc>(context)
           .add(const LoaddataEveryoneswatching());
     });
-    return BlocBuilder<HotandnewBloc, HotandnewState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(
-              strokeWidth: 2,
-            ),
-          );
-        } else if (state.isError) {
-          return const Center(
-            child: Text('error while loading comming soon list'),
-          );
-        } else if (state.everyoneisWatchingList.isEmpty) {
-          return const Center(
-            child: Text('comming soon list is empty'),
-          );
-        } else {
-          return ListView.separated(
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                width: 0,
-              );
-            },
-            itemCount: state.everyoneisWatchingList.length,
-            itemBuilder: (BuildContext context, int index) {
-              final movie = state.everyoneisWatchingList[index];
-              if (movie.id == null) {
-                return const SizedBox();
-              }
-
-              final tv = state.everyoneisWatchingList[index];
-              return EveryonesWatchingWidget(
-                posterpath: '$imageappendurl${tv.posterPath}',
-                movieName: tv.originalName ?? 'no Movie Name',
-                Description: tv.overview ?? 'No Description',
-              );
-            },
-          );
-        }
+    return RefreshIndicator(
+      onRefresh: () async {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          BlocProvider.of<HotandnewBloc>(context)
+              .add(const LoaddataCommingSoon());
+        });
       },
+      child: BlocBuilder<HotandnewBloc, HotandnewState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(
+                strokeWidth: 2,
+              ),
+            );
+          } else if (state.isError) {
+            return const Center(
+              child: Text('error while loading comming soon list'),
+            );
+          } else if (state.everyoneisWatchingList.isEmpty) {
+            return const Center(
+              child: Text('comming soon list is empty'),
+            );
+          } else {
+            return ListView.separated(
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  width: 0,
+                );
+              },
+              itemCount: state.everyoneisWatchingList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final movie = state.everyoneisWatchingList[index];
+                if (movie.id == null) {
+                  return const SizedBox();
+                }
+
+                final tv = state.everyoneisWatchingList[index];
+                return EveryonesWatchingWidget(
+                  posterpath: '$imageappendurl${tv.posterPath}',
+                  movieName: tv.originalName ?? 'no Movie Name',
+                  Description: tv.overview ?? 'No Description',
+                );
+              },
+            );
+          }
+        },
+      ),
     );
   }
 }

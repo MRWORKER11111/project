@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:project/domain/core/failures/main_failure.dart';
@@ -28,16 +27,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       //transform data
 
-  final _state1=    _movieresult.fold(
-          (MainFailure failure) => HomeState(
-                pastyearmovielist: [],
-                trendingmovielist: [],
-                tensedramasmovielist: [],
-                southIndianmovielist: [],
-                trendingTVlist: [],
-                isloading: false,
-                isError: true,
-              ), (HotandnewResp response) {
+      final _state1 = _movieresult.fold((MainFailure failure) {
+        HomeState(
+          pastyearmovielist: [],
+          trendingmovielist: [],
+          tensedramasmovielist: [],
+          southIndianmovielist: [],
+          trendingTVlist: [],
+          isloading: false,
+          isError: true,
+        );
+      }, (HotandnewResp response) {
         final pastyear = response.results;
         final trending = response.results;
         final dramas = response.results;
@@ -55,37 +55,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           isloading: false,
           isError: false,
         );
-       
       });
- emit(_state1!);
-  
-  
-  final _state2=    _tvresult.fold(
-        (MainFailure failure) => HomeState(
-          
-          pastyearmovielist: [],
-          trendingmovielist: [],
-          tensedramasmovielist: [],
-          southIndianmovielist: [],
-          trendingTVlist: [],
-          isloading: false,
-          isError: false,
-        ),
+      emit(_state1);
+
+      final _state2 = _tvresult.fold(
+        (MainFailure failure) {
+          HomeState(
+            pastyearmovielist: [],
+            trendingmovielist: [],
+            tensedramasmovielist: [],
+            southIndianmovielist: [],
+            trendingTVlist: [],
+            isloading: false,
+            isError: true,
+          );
+        },
         (HotandnewResp response) {
-          final pastYear=response.results;
- HomeState(
-          pastyearmovielist: pastyear,
-          trendingmovielist: trending,
-          tensedramasmovielist: dramas,
-          southIndianmovielist: southindian,
-          trendingTVlist: state.trendingTVlist,
-          isloading: false,
-          isError: false,
-        );
+          final to10List = response.results;
+          HomeState(
+            pastyearmovielist: state.pastyearmovielist,
+            trendingmovielist: state.trendingmovielist,
+            tensedramasmovielist: state.tensedramasmovielist,
+            southIndianmovielist: state.southIndianmovielist,
+            trendingTVlist: to10List,
+            isloading: false,
+            isError: false,
+          );
         },
       );
       //send to ui
-      emit(_state2!);
+      emit(_state2);
     });
   }
 }

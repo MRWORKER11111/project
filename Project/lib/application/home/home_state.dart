@@ -3,6 +3,7 @@ part of 'home_bloc.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState({
+    required String stateId,
     required List<HotandNewData> pastyearmovielist,
     required List<HotandNewData> trendingmovielist,
     required List<HotandNewData> tensedramasmovielist,
@@ -13,14 +14,13 @@ class HomeState with _$HomeState {
   }) = _Initial;
 
   factory HomeState.initial() => const HomeState(
+    stateId: '0',
         pastyearmovielist: [],
         trendingmovielist: [],
         tensedramasmovielist: [],
            southIndianmovielist: [],
         trendingTVlist: [],
         isloading: false,
-        isError: false,
+        isError: false, 
       );
-
- 
 }
