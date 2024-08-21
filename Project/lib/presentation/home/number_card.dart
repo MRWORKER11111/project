@@ -5,7 +5,8 @@ import 'package:project/core/colors/colors.dart';
 
 class NumberCard extends StatelessWidget {
   final int index;
-  const NumberCard({super.key, required this.index});
+  final String imageUrl3;
+  const NumberCard({super.key, required this.index, required this.imageUrl3});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,8 @@ class NumberCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(3),
                 image: DecorationImage(
                   image: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY9ySzivdh9z9BRbQ0PGDiYbvkVFRkrSirvQ&s",
+                // imageUrl3
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY9ySzivdh9z9BRbQ0PGDiYbvkVFRkrSirvQ&s",
                   ),
                   fit: BoxFit.cover,
                 ),

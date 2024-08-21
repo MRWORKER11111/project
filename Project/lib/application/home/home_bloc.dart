@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -15,6 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._homehotandnewservice) : super(HomeState.initial()) {
     //on event get home screen data
     on<GetHomeScreenData>((event, emit) async {
+      log("Gettting home screen data");
       //send loading to ui
       emit(state.copyWith(
         isloading: true,
@@ -27,40 +30,44 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       //transform data
 
-      final _state1 = _movieresult.fold((MainFailure failure) {
-        HomeState(
-          pastyearmovielist: [],
-          trendingmovielist: [],
-          tensedramasmovielist: [],
-          southIndianmovielist: [],
-          trendingTVlist: [],
-          isloading: false,
-          isError: true,
-        );
-      }, (HotandnewResp response) {
-        final pastyear = response.results;
-        final trending = response.results;
-        final dramas = response.results;
-        final southindian = response.results;
-        trending.shuffle();
-        dramas.shuffle();
-        pastyear.shuffle();
-        southindian.shuffle();
-        HomeState(
-          pastyearmovielist: pastyear,
-          trendingmovielist: trending,
-          tensedramasmovielist: dramas,
-          southIndianmovielist: southindian,
-          trendingTVlist: state.trendingTVlist,
-          isloading: false,
-          isError: false,
-        );
-      });
+      final _state1 = _movieresult.fold(
+        (MainFailure failure) {
+          return HomeState(
+            stateId: DateTime.now().microsecondsSinceEpoch.toString(),
+            pastyearmovielist: [],
+            trendingmovielist: [],
+            tensedramasmovielist: [],
+            southIndianmovielist: [],
+            trendingTVlist: [],
+            isloading: false,
+            isError: true,
+          );
+        },
+        (HotandnewResp response) {
+          log("got data");
+          final pastyear = response.results;
+          final trending = response.results;
+          final dramas = response.results;
+          final southindian = response.results;
+         
+          return HomeState(
+            stateId: DateTime.now().microsecondsSinceEpoch.toString(),
+            pastyearmovielist: pastyear,
+            trendingmovielist: trending,
+            tensedramasmovielist: dramas,
+            southIndianmovielist: southindian,
+            trendingTVlist: state.trendingTVlist,
+            isloading: false,
+            isError: false,
+          );
+        },
+      );
       emit(_state1);
 
       final _state2 = _tvresult.fold(
         (MainFailure failure) {
-          HomeState(
+          return HomeState(
+            stateId: DateTime.now().microsecondsSinceEpoch.toString(),
             pastyearmovielist: [],
             trendingmovielist: [],
             tensedramasmovielist: [],
@@ -72,7 +79,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         },
         (HotandnewResp response) {
           final to10List = response.results;
-          HomeState(
+          log('gotdata2');
+          return HomeState(
+            stateId: DateTime.now().microsecondsSinceEpoch.toString(),
             pastyearmovielist: state.pastyearmovielist,
             trendingmovielist: state.trendingmovielist,
             tensedramasmovielist: state.tensedramasmovielist,

@@ -14,12 +14,13 @@ class Backgroundcard extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: 500,
+          height: 400,
+          
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             image: DecorationImage(
               image: NetworkImage(mainImage),
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           ),
         ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -49,6 +51,12 @@ class MyApp extends StatelessWidget {
                 labelMedium: TextStyle(color: Colors.white),
                 headlineMedium: TextStyle(color: Colors.white),
                 bodyMedium: TextStyle(color: Colors.white))),
+        scrollBehavior: MaterialScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+           PointerDeviceKind.unknown
+          },
+        ),
         home: ScreenMainPage(),
       ),
     );
