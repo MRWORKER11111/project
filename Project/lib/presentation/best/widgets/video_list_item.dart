@@ -71,7 +71,7 @@ class VideoListItem extends StatelessWidget {
                             onTap: () {
                               // BlocProvider.of<FastLaughBloc>(context).add(Unlikedvideo(id: _index));
                               likedvideosidsnotifier.value.remove(_index);
-                              likedvideosidsnotifier.notifyListeners();
+                             likedvideosidsnotifier.notifyListeners();
                             },
                             child: videoActionsWidget(
                               icon: Icons.favorite_outline,
@@ -83,7 +83,7 @@ class VideoListItem extends StatelessWidget {
                             onTap: () {
                               // BlocProvider.of<FastLaughBloc>(context).add(Likedvideo(id: _index));
                               likedvideosidsnotifier.value.add(_index);
-                              likedvideosidsnotifier.notifyListeners();
+                             likedvideosidsnotifier.notifyListeners();
                             },
                             child: videoActionsWidget(
                               icon: Icons.emoji_emotions,

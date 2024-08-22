@@ -45,7 +45,7 @@ class CommingSoonWidget extends StatelessWidget {
               kheight20,
               moviename_remindme_info_Buttons(movieName: movieName),
               Text(
-                "Coming on $day ",
+                "Coming on $day  ",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 237, 236, 236)),
@@ -88,45 +88,46 @@ class moviename_remindme_info_Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
       children: [
         Expanded(
-          child: Text(
-            movieName,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.caveat(
-              textStyle: const TextStyle(
-                fontSize: 40,
-                letterSpacing: -2,
-                fontWeight: FontWeight.w500,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                movieName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.caveat(
+                  textStyle: const TextStyle(
+                    fontSize: 40,
+                    letterSpacing: -2,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 5),
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+          child: Row(
               children: [
-                mediabuttons(
-                  icon1: Icons.notifications_none_outlined,
-                  iconlabel: "Remind Me",
-                  iconSize: 20,
-                  heightbetween: 0,
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                mediabuttons(
-                  icon1: Icons.info_outlined,
-                  iconlabel: "info",
-                  iconSize: 20,
-                  heightbetween: 0,
-                ),
-              ],
-            ),
+              mediabuttons(
+                icon1: Icons.notifications_none_outlined,
+                iconlabel: "Remind Me",
+                iconSize: 20,
+                heightbetween: 0,
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              mediabuttons(
+                icon1: Icons.info_outlined,
+                iconlabel: "info",
+                iconSize: 20,
+                heightbetween: 0,
+              ),
+            ],
           ),
         )
       ],
@@ -163,7 +164,6 @@ class Date_in_sidebar extends StatelessWidget {
           Text(
             day,
             style: TextStyle(
-              
               fontSize: 20,
               letterSpacing: 1,
               fontWeight: FontWeight.bold,
